@@ -1,501 +1,421 @@
 /* ==================================================
-   AGRINHO V2 - PREMIUM SCRIPT
+   AGRINHO V3
+   PREMIUM INTERACTIONS
 ================================================== */
 
-/* ==================================================
-   ELEMENTOS
-================================================== */
+document.addEventListener("DOMContentLoaded", () => {
 
-const header = document.getElementById("header");
-const nav = document.getElementById("nav");
-const mobileBtn = document.getElementById("mobile-btn");
-const backToTop = document.getElementById("backToTop");
-const progressBar = document.querySelector(".scroll-progress");
+    /* ==========================================
+       ELEMENTOS
+    ========================================== */
 
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll("nav a");
+    const header = document.querySelector("header");
+    const mobileBtn = document.querySelector("#mobile-btn");
+    const nav = document.querySelector("nav");
 
-/* ==================================================
-   HEADER
-================================================== */
+    const backToTop = document.querySelector("#backToTop");
+    const progressBar = document.querySelector(".scroll-progress");
 
-function handleHeader() {
+    /* ==========================================
+       HEADER SCROLL
+    ========================================== */
 
-    if (window.scrollY > 60) {
+    function updateHeader() {
 
-        header.classList.add("scrolled");
+        if (window.scrollY > 60) {
 
-    } else {
+            header.classList.add("scrolled");
 
-        header.classList.remove("scrolled");
+        } else {
+
+            header.classList.remove("scrolled");
+
+        }
 
     }
 
-}
+    window.addEventListener("scroll", updateHeader);
 
-window.addEventListener("scroll", handleHeader);
+    /* ==========================================
+       MOBILE MENU
+    ========================================== */
 
-/* ==================================================
-   PROGRESS BAR
-================================================== */
+    if (mobileBtn) {
 
-function updateProgressBar() {
+        mobileBtn.addEventListener("click", () => {
 
-    const scrollTop = window.scrollY;
+            nav.classList.toggle("active");
+            mobileBtn.classList.toggle("active");
 
-    const documentHeight =
-        document.documentElement.scrollHeight -
-        window.innerHeight;
+        });
 
-    const progress =
-        (scrollTop / documentHeight) * 100;
+    }
 
-    progressBar.style.width = progress + "%";
+    /* ==========================================
+       FECHAR MENU AO CLICAR
+    ========================================== */
 
-}
+    document.querySelectorAll('nav a').forEach(link => {
 
-window.addEventListener("scroll", updateProgressBar);
+        link.addEventListener("click", () => {
 
-/* ==================================================
-   MOBILE MENU
-================================================== */
+            nav.classList.remove("active");
 
-if (mobileBtn) {
+            if (mobileBtn) {
+                mobileBtn.classList.remove("active");
+            }
 
-    mobileBtn.addEventListener("click", () => {
-
-        nav.classList.toggle("active");
-        mobileBtn.classList.toggle("active");
+        });
 
     });
 
-}
+    /* ==========================================
+       SMOOTH SCROLL
+    ========================================== */
 
-document.addEventListener("click", (event) => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-    const clickedNav =
-        nav.contains(event.target);
+        anchor.addEventListener("click", function(e) {
 
-    const clickedBtn =
-        mobileBtn.contains(event.target);
+            e.preventDefault();
 
-    if (
-        !clickedNav &&
-        !clickedBtn &&
-        nav.classList.contains("active")
-    ) {
-
-        nav.classList.remove("active");
-        mobileBtn.classList.remove("active");
-
-    }
-
-});
-
-/* ==================================================
-   HAMBURGUER ANIMADO
-================================================== */
-
-function animateHamburger() {
-
-    if (!mobileBtn) return;
-
-    const spans =
-        mobileBtn.querySelectorAll("span");
-
-    if (mobileBtn.classList.contains("active")) {
-
-        spans[0].style.transform =
-            "translateY(9px) rotate(45deg)";
-
-        spans[1].style.opacity = "0";
-
-        spans[2].style.transform =
-            "translateY(-9px) rotate(-45deg)";
-
-    } else {
-
-        spans[0].style.transform = "";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "";
-
-    }
-
-}
-
-mobileBtn?.addEventListener(
-    "click",
-    animateHamburger
-);
-
-/* ==================================================
-   SMOOTH SCROLL
-================================================== */
-
-document
-.querySelectorAll('a[href^="#"]')
-.forEach(anchor => {
-
-    anchor.addEventListener("click", function(e) {
-
-        e.preventDefault();
-
-        const target =
-            document.querySelector(
+            const target = document.querySelector(
                 this.getAttribute("href")
             );
 
-        if (!target) return;
+            if (!target) return;
 
-        const offset = 80;
+            window.scrollTo({
 
-        window.scrollTo({
-
-            top:
-                target.offsetTop -
-                offset,
-
-            behavior: "smooth"
-
-        });
-
-        nav.classList.remove("active");
-        mobileBtn.classList.remove("active");
-
-    });
-
-});
-
-/* ==================================================
-   ACTIVE MENU
-================================================== */
-
-function activeMenu() {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop =
-            section.offsetTop - 180;
-
-        const sectionHeight =
-            section.offsetHeight;
-
-        if (
-            window.scrollY >= sectionTop &&
-            window.scrollY <
-            sectionTop + sectionHeight
-        ) {
-
-            current =
-                section.getAttribute("id");
-
-        }
-
-    });
-
-    navLinks.forEach(link => {
-
-        link.classList.remove("active-link");
-
-        if (
-            link.getAttribute("href") ===
-            `#${current}`
-        ) {
-
-            link.classList.add("active-link");
-
-        }
-
-    });
-
-}
-
-window.addEventListener(
-    "scroll",
-    activeMenu
-);
-
-/* ==================================================
-   BACK TO TOP
-================================================== */
-
-function handleBackToTop() {
-
-    if (window.scrollY > 500) {
-
-        backToTop.classList.add("show");
-
-    } else {
-
-        backToTop.classList.remove("show");
-
-    }
-
-}
-
-window.addEventListener(
-    "scroll",
-    handleBackToTop
-);
-
-backToTop?.addEventListener(
-    "click",
-    () => {
-
-        window.scrollTo({
-
-            top: 0,
-            behavior: "smooth"
-
-        });
-
-    }
-);
-
-/* ==================================================
-   SCROLL REVEAL
-================================================== */
-
-const revealElements =
-    document.querySelectorAll(".reveal");
-
-const revealObserver =
-    new IntersectionObserver(
-
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (
-                    entry.isIntersecting
-                ) {
-
-                    entry.target.classList.add(
-                        "active"
-                    );
-
-                }
+                top: target.offsetTop - 80,
+                behavior: "smooth"
 
             });
 
-        },
+        });
 
-        {
-            threshold: 0.15
-        }
+    });
 
+    /* ==========================================
+       ACTIVE MENU
+    ========================================== */
+
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav a");
+
+    function activeSection() {
+
+        let current = "";
+
+        sections.forEach(section => {
+
+            const top = section.offsetTop - 200;
+            const height = section.offsetHeight;
+
+            if (
+                window.scrollY >= top &&
+                window.scrollY < top + height
+            ) {
+                current = section.id;
+            }
+
+        });
+
+        navLinks.forEach(link => {
+
+            link.classList.remove("active-link");
+
+            if (
+                link.getAttribute("href") ===
+                `#${current}`
+            ) {
+
+                link.classList.add("active-link");
+
+            }
+
+        });
+
+    }
+
+    window.addEventListener("scroll", activeSection);
+
+    /* ==========================================
+       PROGRESS BAR
+    ========================================== */
+
+    function updateProgress() {
+
+        if (!progressBar) return;
+
+        const scrollTop = window.scrollY;
+
+        const height =
+            document.documentElement.scrollHeight -
+            window.innerHeight;
+
+        const progress =
+            (scrollTop / height) * 100;
+
+        progressBar.style.width =
+            progress + "%";
+
+    }
+
+    window.addEventListener(
+        "scroll",
+        updateProgress
     );
 
-revealElements.forEach(element => {
+    /* ==========================================
+       BACK TO TOP
+    ========================================== */
 
-    revealObserver.observe(element);
+    function showBackToTop() {
 
-});
+        if (!backToTop) return;
 
-/* ==================================================
-   COUNTER ANIMATION
-================================================== */
+        if (window.scrollY > 600) {
 
-const counters =
-    document.querySelectorAll(".counter");
+            backToTop.classList.add("show");
 
-const counterObserver =
-    new IntersectionObserver(
+        } else {
 
-        entries => {
+            backToTop.classList.remove("show");
 
-            entries.forEach(entry => {
+        }
 
-                if (!entry.isIntersecting)
-                    return;
+    }
 
-                const counter =
-                    entry.target;
+    window.addEventListener(
+        "scroll",
+        showBackToTop
+    );
 
-                const target =
-                    parseInt(
-                        counter.dataset.target
-                    );
+    backToTop?.addEventListener(
+        "click",
+        () => {
 
-                const duration = 2000;
+            window.scrollTo({
 
-                let start = 0;
+                top: 0,
+                behavior: "smooth"
 
-                const increment =
-                    target /
-                    (duration / 16);
+            });
 
-                function updateCounter() {
+        }
+    );
 
-                    start += increment;
+    /* ==========================================
+       SCROLL REVEAL
+    ========================================== */
 
-                    if (start < target) {
+    const revealElements =
+        document.querySelectorAll(".reveal");
 
-                        counter.textContent =
-                            Math.floor(start);
+    const revealObserver =
+        new IntersectionObserver(
 
-                        requestAnimationFrame(
-                            updateCounter
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add(
+                            "active"
                         );
-
-                    } else {
-
-                        counter.textContent =
-                            target;
 
                     }
 
-                }
+                });
 
-                updateCounter();
+            },
 
-                counterObserver.unobserve(
-                    counter
-                );
+            {
+                threshold: 0.15
+            }
 
-            });
+        );
 
-        },
+    revealElements.forEach(element => {
 
-        {
-            threshold: 0.5
-        }
+        revealObserver.observe(element);
+
+    });
+
+    /* ==========================================
+       COUNTERS
+    ========================================== */
+
+    const counters =
+        document.querySelectorAll(".counter");
+
+    const counterObserver =
+        new IntersectionObserver(
+
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (!entry.isIntersecting)
+                        return;
+
+                    const counter =
+                        entry.target;
+
+                    const target =
+                        parseInt(
+                            counter.dataset.target
+                        );
+
+                    let current = 0;
+
+                    const speed =
+                        target / 120;
+
+                    function updateCounter() {
+
+                        current += speed;
+
+                        if (current < target) {
+
+                            counter.textContent =
+                                Math.floor(current);
+
+                            requestAnimationFrame(
+                                updateCounter
+                            );
+
+                        } else {
+
+                            counter.textContent =
+                                target.toLocaleString(
+                                    "pt-BR"
+                                );
+
+                        }
+
+                    }
+
+                    updateCounter();
+
+                    counterObserver.unobserve(
+                        counter
+                    );
+
+                });
+
+            },
+
+            {
+                threshold: 0.5
+            }
+
+        );
+
+    counters.forEach(counter => {
+
+        counterObserver.observe(counter);
+
+    });
+
+    /* ==========================================
+       HERO PARALLAX
+    ========================================== */
+
+    const hero =
+        document.querySelector(".hero");
+
+    function heroParallax() {
+
+        if (!hero) return;
+
+        const offset =
+            window.pageYOffset;
+
+        hero.style.backgroundPositionY =
+            offset * 0.35 + "px";
+
+    }
+
+    window.addEventListener(
+        "scroll",
+        heroParallax
+    );
+
+    /* ==========================================
+       CARD STAGGER
+    ========================================== */
+
+    const cards = document.querySelectorAll(
+
+        ".area-card, \
+        .innovation-card, \
+        .number-card, \
+        .market-card, \
+        .flow-item, \
+        .sustainability-card"
 
     );
 
-counters.forEach(counter => {
+    cards.forEach((card, index) => {
 
-    counterObserver.observe(counter);
+        card.style.transitionDelay =
+            `${index * 80}ms`;
 
-});
+    });
 
-/* ==================================================
-   PARALLAX HERO
-================================================== */
+    /* ==========================================
+       IMAGE ZOOM
+    ========================================== */
 
-const hero =
-    document.querySelector(".hero");
+    document
+    .querySelectorAll("img")
+    .forEach(image => {
 
-function heroParallax() {
+        image.addEventListener(
+            "mouseenter",
+            () => {
 
-    if (!hero) return;
+                image.style.transition =
+                    "transform .5s ease";
 
-    const offset =
-        window.pageYOffset;
+            }
+        );
 
-    hero.style.backgroundPositionY =
-        offset * 0.4 + "px";
+    });
 
-}
-
-window.addEventListener(
-    "scroll",
-    heroParallax
-);
-
-/* ==================================================
-   CARD STAGGER EFFECT
-================================================== */
-
-const cards = document.querySelectorAll(
-    ".area-card, .innovation-card, .number-card"
-);
-
-cards.forEach((card, index) => {
-
-    card.style.transitionDelay =
-        `${index * 80}ms`;
-
-});
-
-/* ==================================================
-   IMAGEM HOVER EXTRA
-================================================== */
-
-const images =
-    document.querySelectorAll(
-        ".gallery-grid img"
-    );
-
-images.forEach(image => {
-
-    image.addEventListener(
-        "mousemove",
-        () => {
-
-            image.style.transform =
-                "scale(1.05)";
-
-        }
-    );
-
-    image.addEventListener(
-        "mouseleave",
-        () => {
-
-            image.style.transform =
-                "scale(1)";
-
-        }
-    );
-
-});
-
-/* ==================================================
-   LOAD ANIMATION
-================================================== */
-
-window.addEventListener("load", () => {
+    /* ==========================================
+       LOAD EFFECT
+    ========================================== */
 
     document.body.classList.add(
         "loaded"
     );
 
+    /* ==========================================
+       INIT
+    ========================================== */
+
+    updateHeader();
+    updateProgress();
+    activeSection();
+    showBackToTop();
+
 });
 
-/* ==================================================
-   ESC FECHA MENU
-================================================== */
+console.log(`
+🌱 AGRINHO V3
 
-document.addEventListener(
-    "keydown",
-    (event) => {
+✓ Agro em Números
+✓ AgTech
+✓ Mercado Financeiro
+✓ Sustentabilidade
+✓ Profissões do Futuro
+✓ Scroll Reveal
+✓ Counter Animation
+✓ Parallax Hero
 
-        if (
-            event.key === "Escape"
-        ) {
-
-            nav.classList.remove("active");
-            mobileBtn.classList.remove("active");
-
-        }
-
-    }
-);
-
-/* ==================================================
-   INIT
-================================================== */
-
-handleHeader();
-updateProgressBar();
-handleBackToTop();
-activeMenu();
-
-/* ==================================================
-   CONSOLE BRAND
-================================================== */
-
-console.log(
-`
-🌱 AGRINHO V2
-
-Tecnologia
-Inovação
-Sustentabilidade
-
-Site carregado com sucesso.
-`
-);
+Sistema carregado.
+`);
