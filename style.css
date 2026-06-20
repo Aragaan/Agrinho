@@ -1121,3 +1121,11 @@ padding:80px 0;
 }
 
 }
+
+.active-link{
+color:#4CAF50 !important;
+}
+
+.active-link::after{
+width:100% !important;
+}
