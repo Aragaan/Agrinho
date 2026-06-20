@@ -351,7 +351,7 @@ margin-bottom:25px;
 
 .hero h1{
 
-font-size:clamp(3rem,6vw,5.8rem);
+font-size:clamp(2.2rem, 5vw, 5.8rem);
 
 line-height:1.05;
 
@@ -1123,7 +1123,7 @@ grid-template-columns:1fr;
 
 .hero h1{
 
-font-size:2.5rem;
+font-size:clamp(2rem,8vw,2.8rem);
 
 }
 
@@ -1153,42 +1153,4 @@ color:#4CAF50 !important;
 
 .active-link::after{
 width:100% !important;
-}
-
-/* Notebook */
-@media (max-width: 1200px){
-
-    .hero h1{
-        font-size:3rem;
-    }
-
-}
-
-/* Tablet */
-@media (max-width: 768px){
-
-    .hero h1{
-        font-size:2.3rem;
-    }
-
-    .grid,
-    .cards,
-    .market-grid,
-    .areas-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-/* Celular */
-@media (max-width: 480px){
-
-    .hero h1{
-        font-size:1.8rem;
-    }
-
-    section{
-        padding:60px 0;
-    }
-
 }
