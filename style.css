@@ -331,21 +331,22 @@ z-index:2;
 
 .hero-badge{
 
-display:inline-block;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:10px;
 
-padding:10px 18px;
+padding:12px 22px;
 
-background:rgba(255,255,255,.15);
+max-width:100%;
 
-border:1px solid rgba(255,255,255,.2);
+width:fit-content;
 
-backdrop-filter:blur(10px);
+border-radius:999px;
 
-border-radius:50px;
+text-align:center;
 
-color:white;
-
-margin-bottom:25px;
+flex-wrap:wrap;
 
 }
 
@@ -1153,4 +1154,22 @@ color:#4CAF50 !important;
 
 .active-link::after{
 width:100% !important;
+}
+
+@media(max-width:480px){
+
+.hero-badge{
+
+width:100%;
+
+max-width:320px;
+
+margin:auto;
+
+padding:12px 18px;
+
+font-size:.9rem;
+
+}
+
 }
