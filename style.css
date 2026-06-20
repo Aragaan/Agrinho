@@ -1154,3 +1154,41 @@ color:#4CAF50 !important;
 .active-link::after{
 width:100% !important;
 }
+
+/* Notebook */
+@media (max-width: 1200px){
+
+    .hero h1{
+        font-size:3rem;
+    }
+
+}
+
+/* Tablet */
+@media (max-width: 768px){
+
+    .hero h1{
+        font-size:2.3rem;
+    }
+
+    .grid,
+    .cards,
+    .market-grid,
+    .areas-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/* Celular */
+@media (max-width: 480px){
+
+    .hero h1{
+        font-size:1.8rem;
+    }
+
+    section{
+        padding:60px 0;
+    }
+
+}
