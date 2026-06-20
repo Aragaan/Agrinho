@@ -1,6 +1,31 @@
 /* ==================================================
    AGRINHO V2 - PREMIUM AGRO THEME
    ================================================== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+
+.container{
+    width:min(1200px, 90%);
+    margin:auto;
+}
 
 :root{
 
