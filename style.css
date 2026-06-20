@@ -920,4 +920,15 @@ width:100%;
 }
 
 }
-```
+
+.mobile-btn.active span:nth-child(1){
+transform:translateY(9px) rotate(45deg);
+}
+
+.mobile-btn.active span:nth-child(2){
+opacity:0;
+}
+
+.mobile-btn.active span:nth-child(3){
+transform:translateY(-9px) rotate(-45deg);
+}
