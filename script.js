@@ -1,118 +1,76 @@
-```javascript
+/* =====================================
+ELEMENTOS
+===================================== */
+
 const header = document.getElementById("header");
 const nav = document.getElementById("nav");
 const mobileBtn = document.getElementById("mobile-btn");
 const backToTop = document.getElementById("backToTop");
 const progressBar = document.querySelector(".scroll-progress");
 
-/* ==========================
-HEADER + BACK TO TOP
-========================== */
+const menuLinks = document.querySelectorAll("nav a");
+const sections = document.querySelectorAll("section[id]");
 
-window.addEventListener("scroll", () => {
+/* =====================================
+HEADER INTELIGENTE
+===================================== */
 
-    const scrollY = window.scrollY;
+function handleHeader() {
 
-    if (scrollY > 50) {
+    if (window.scrollY > 50) {
+
         header.classList.add("scrolled");
+
     } else {
+
         header.classList.remove("scrolled");
+
     }
 
-    if (scrollY > 400) {
-        backToTop.classList.add("show");
-    } else {
-        backToTop.classList.remove("show");
-    }
+}
 
-});
+window.addEventListener("scroll", handleHeader);
 
-/* ==========================
-SCROLL PROGRESS BAR
-========================== */
+/* =====================================
+PROGRESS BAR
+===================================== */
 
-window.addEventListener("scroll", () => {
+function updateProgressBar() {
 
     const scrollTop = window.scrollY;
 
-    const docHeight =
+    const documentHeight =
         document.documentElement.scrollHeight -
         window.innerHeight;
 
     const progress =
-        (scrollTop / docHeight) * 100;
+        (scrollTop / documentHeight) * 100;
 
     progressBar.style.width = progress + "%";
 
-});
+}
 
-/* ==========================
-MENU MOBILE
-========================== */
+window.addEventListener("scroll", updateProgressBar);
 
-mobileBtn.addEventListener("click", () => {
-
-    nav.classList.toggle("active");
-    mobileBtn.classList.toggle("active");
-
-});
-
-/* ==========================
-FECHAR MENU AO CLICAR
-========================== */
-
-const navLinks = document.querySelectorAll("nav a");
-
-navLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        nav.classList.remove("active");
-        mobileBtn.classList.remove("active");
-
-    });
-
-});
-
-/* ==========================
-SCROLL REVEAL
-========================== */
-
-const revealElements =
-    document.querySelectorAll(".reveal");
-
-const revealObserver =
-    new IntersectionObserver(
-
-        (entries) => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("active");
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: 0.15
-        }
-
-    );
-
-revealElements.forEach(element => {
-
-    revealObserver.observe(element);
-
-});
-
-/* ==========================
+/* =====================================
 BOTÃO VOLTAR AO TOPO
-========================== */
+===================================== */
+
+function handleBackToTop() {
+
+    if (window.scrollY > 500) {
+
+        backToTop.classList.add("show");
+
+    } else {
+
+        backToTop.classList.remove("show");
+
+    }
+
+}
+
+window.addEventListener("scroll", handleBackToTop);
 
 backToTop.addEventListener("click", () => {
 
@@ -125,24 +83,103 @@ backToTop.addEventListener("click", () => {
 
 });
 
-/* ==========================
-MENU ATIVO AUTOMÁTICO
-========================== */
+/* =====================================
+MENU MOBILE
+===================================== */
 
-const sections =
-    document.querySelectorAll("section[id]");
+mobileBtn.addEventListener("click", () => {
 
-const menuLinks =
-    document.querySelectorAll("nav a");
+    nav.classList.toggle("active");
+    mobileBtn.classList.toggle("active");
 
-window.addEventListener("scroll", () => {
+});
+
+document.addEventListener("click", (event) => {
+
+    const clickedInsideNav =
+        nav.contains(event.target);
+
+    const clickedButton =
+        mobileBtn.contains(event.target);
+
+    if (
+        !clickedInsideNav &&
+        !clickedButton &&
+        nav.classList.contains("active")
+    ) {
+
+        nav.classList.remove("active");
+        mobileBtn.classList.remove("active");
+
+    }
+
+});
+
+document.addEventListener("keydown", (event) => {
+
+    if (
+        event.key === "Escape" &&
+        nav.classList.contains("active")
+    ) {
+
+        nav.classList.remove("active");
+        mobileBtn.classList.remove("active");
+
+    }
+
+});
+
+/* =====================================
+SMOOTH SCROLL
+===================================== */
+
+document
+.querySelectorAll('a[href^="#"]')
+.forEach(anchor => {
+
+    anchor.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        const targetId =
+            this.getAttribute("href");
+
+        const target =
+            document.querySelector(targetId);
+
+        if (!target) return;
+
+        const offset = 80;
+
+        const topPosition =
+            target.offsetTop - offset;
+
+        window.scrollTo({
+
+            top: topPosition,
+            behavior: "smooth"
+
+        });
+
+        nav.classList.remove("active");
+        mobileBtn.classList.remove("active");
+
+    });
+
+});
+
+/* =====================================
+MENU ATIVO
+===================================== */
+
+function updateActiveMenu() {
 
     let currentSection = "";
 
     sections.forEach(section => {
 
         const sectionTop =
-            section.offsetTop - 150;
+            section.offsetTop - 200;
 
         const sectionHeight =
             section.offsetHeight;
@@ -164,10 +201,10 @@ window.addEventListener("scroll", () => {
 
         link.classList.remove("active-link");
 
-        const href =
-            link.getAttribute("href");
-
-        if (href === `#${currentSection}`) {
+        if (
+            link.getAttribute("href") ===
+            `#${currentSection}`
+        ) {
 
             link.classList.add("active-link");
 
@@ -175,85 +212,88 @@ window.addEventListener("scroll", () => {
 
     });
 
+}
+
+window.addEventListener("scroll", updateActiveMenu);
+
+/* =====================================
+SCROLL REVEAL
+===================================== */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+const revealObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "active"
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.15
+        }
+
+    );
+
+revealElements.forEach(element => {
+
+    revealObserver.observe(element);
+
 });
 
-/* ==========================
-ANIMAÇÃO DOS CARDS
-========================== */
+/* =====================================
+COUNTER ANIMATION
+===================================== */
 
-const cards =
-    document.querySelectorAll(".card");
-
-cards.forEach((card, index) => {
-
-    card.style.transitionDelay =
-        `${index * 80}ms`;
-
-});
-
-/* ==========================
-EFEITO PARALLAX SUAVE HERO
-========================== */
-
-const hero =
-    document.querySelector(".hero");
-
-window.addEventListener("scroll", () => {
-
-    const offset =
-        window.pageYOffset;
-
-    if (hero) {
-
-        hero.style.backgroundPositionY =
-            offset * 0.4 + "px";
-
-    }
-
-});
-
-/* ==========================
-ANIMAÇÃO DE CONTADORES
-========================== */
-
-const statNumbers =
-    document.querySelectorAll(".stat-card h3");
+const counters =
+    document.querySelectorAll(".counter");
 
 const counterObserver =
     new IntersectionObserver(
 
-        (entries) => {
+        entries => {
 
             entries.forEach(entry => {
 
-                if (!entry.isIntersecting) return;
+                if (!entry.isIntersecting)
+                    return;
 
-                const element =
+                const counter =
                     entry.target;
 
-                const finalText =
-                    element.textContent;
-
-                const finalNumber =
-                    parseInt(
-                        finalText.replace(/\D/g, "")
+                const target =
+                    Number(
+                        counter.dataset.target
                     );
-
-                if (isNaN(finalNumber)) return;
 
                 let current = 0;
 
-                const increment =
-                    finalNumber / 80;
+                const duration = 2000;
 
-                const updateCounter = () => {
+                const increment =
+                    target /
+                    (duration / 16);
+
+                function updateCounter() {
 
                     current += increment;
 
-                    if (current < finalNumber) {
+                    if (current < target) {
 
-                        element.textContent =
-                            "+" +
+                        counter.textContent =
                             Math.floor(current);
 
                         requestAnimationFrame(
@@ -262,17 +302,17 @@ const counterObserver =
 
                     } else {
 
-                        element.textContent =
-                            finalText;
+                        counter.textContent =
+                            target;
 
                     }
 
-                };
+                }
 
                 updateCounter();
 
                 counterObserver.unobserve(
-                    element
+                    counter
                 );
 
             });
@@ -285,74 +325,76 @@ const counterObserver =
 
     );
 
-statNumbers.forEach(number => {
+counters.forEach(counter => {
 
-    counterObserver.observe(number);
+    counterObserver.observe(counter);
 
 });
 
-/* ==========================
-ENTRADA SUAVE DA PÁGINA
-========================== */
+/* =====================================
+PARALLAX HERO
+===================================== */
+
+const hero =
+    document.querySelector(".hero");
+
+function parallaxHero() {
+
+    if (!hero) return;
+
+    const offset =
+        window.pageYOffset;
+
+    hero.style.backgroundPositionY =
+        offset * 0.35 + "px";
+
+}
+
+window.addEventListener(
+    "scroll",
+    parallaxHero
+);
+
+/* =====================================
+EFEITO SUAVE NOS CARDS
+===================================== */
+
+const cards =
+    document.querySelectorAll(".card");
+
+cards.forEach((card, index) => {
+
+    card.style.transitionDelay =
+        `${index * 80}ms`;
+
+});
+
+/* =====================================
+ANIMAÇÃO DE ENTRADA
+===================================== */
 
 window.addEventListener("load", () => {
 
-    document.body.classList.add("loaded");
+    document.body.classList.add(
+        "loaded"
+    );
 
 });
 
-/* ==========================
-TECLA ESC FECHA MENU
-========================== */
+/* =====================================
+INICIALIZAÇÃO
+===================================== */
 
-document.addEventListener("keydown", (event) => {
+handleHeader();
+updateProgressBar();
+handleBackToTop();
+updateActiveMenu();
 
-    if (
-        event.key === "Escape" &&
-        nav.classList.contains("active")
-    ) {
-
-        nav.classList.remove("active");
-        mobileBtn.classList.remove("active");
-
-    }
-
-});
-
-/* ==========================
-CLIQUE FORA FECHA MENU
-========================== */
-
-document.addEventListener("click", (event) => {
-
-    const clickInsideNav =
-        nav.contains(event.target);
-
-    const clickButton =
-        mobileBtn.contains(event.target);
-
-    if (
-        !clickInsideNav &&
-        !clickButton &&
-        nav.classList.contains("active")
-    ) {
-
-        nav.classList.remove("active");
-        mobileBtn.classList.remove("active");
-
-    }
-
-});
-
-/* ==========================
-SMOOTH LOADING
-========================== */
-
-document.documentElement.style.scrollBehavior =
-    "smooth";
+/* =====================================
+LOG
+===================================== */
 
 console.log(
-    "%c🌱 Agrinho Premium carregado com sucesso!",
+    "%c🌱 AGRINHO - SITE CARREGADO",
     "color:#2e8b57;font-size:14px;font-weight:bold;"
 );
-```
