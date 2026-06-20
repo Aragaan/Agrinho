@@ -1,225 +1,453 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AgroTech Brasil | Tecnologia e Inovação no Agronegócio</title>
+    <title>Agrinho 2026 | Tecnologia, Sustentabilidade e Inovação no Campo</title>
 
-    <link rel="stylesheet" href="style.css">
+    <meta name="description"
+        content="Projeto Agrinho 2026 - Tecnologia, sustentabilidade e inovação para transformar o futuro da agricultura brasileira.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <meta name="keywords"
+        content="Agrinho, Agricultura, Tecnologia, Sustentabilidade, Bioinsumos, Agronegócio">
+
+    <meta property="og:title"
+        content="Agrinho 2026">
+
+    <meta property="og:description"
+        content="Tecnologia, sustentabilidade e inovação para transformar o futuro do campo.">
+
+    <meta property="og:type"
+        content="website">
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="style.css">
+
 </head>
 
 <body>
+
+    <div class="scroll-progress"></div>
 
     <header id="header">
 
         <div class="container nav-container">
 
             <div class="logo">
-                AgroTech Brasil
+                🌱 Agrinho 2026
             </div>
 
             <nav id="nav">
 
                 <ul>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#pesquisa">Pesquisa</a></li>
-                    <li><a href="#inovacao">Inovação</a></li>
-                    <li><a href="#contato">Contato</a></li>
+
+                    <li>
+                        <a href="#home">Início</a>
+                    </li>
+
+                    <li>
+                        <a href="#sobre">Sobre</a>
+                    </li>
+
+                    <li>
+                        <a href="#objetivos">Objetivos</a>
+                    </li>
+
+                    <li>
+                        <a href="#destaques">Destaques</a>
+                    </li>
+
+                    <li>
+                        <a href="#impacto">Impacto</a>
+                    </li>
+
+                    <li>
+                        <a href="#contato">Contato</a>
+                    </li>
+
                 </ul>
 
             </nav>
 
-            <div class="actions">
+            <button id="mobile-btn"
+                class="mobile-btn">
 
-                <button class="search-btn">
-                    🔍
-                </button>
+                <span></span>
+                <span></span>
+                <span></span>
 
-                <button class="mobile-btn" id="mobile-btn">
-                    ☰
-                </button>
-
-            </div>
+            </button>
 
         </div>
 
     </header>
 
-    <section class="hero">
+    <section id="home"
+        class="hero">
 
         <div class="overlay"></div>
 
-        <div class="hero-content">
+        <div class="container hero-content">
 
-            <span class="tag">
-                TECNOLOGIA E PESQUISA
+            <span class="hero-badge">
+                🌍 Agricultura Inteligente e Sustentável
             </span>
 
             <h1>
-                Bioinsumos e o Futuro da Agricultura Sustentável
+                Tecnologia e Inovação Transformando o Futuro do Campo
             </h1>
 
             <p>
-                A inovação está transformando o campo através da inteligência artificial,
-                agricultura de precisão, bioinsumos e tecnologias que aumentam a produtividade
-                preservando os recursos naturais.
+
+                O Projeto Agrinho demonstra como a ciência, os bioinsumos,
+                a inteligência artificial e a agricultura de precisão podem
+                aumentar a produtividade e preservar os recursos naturais.
+
             </p>
 
-            <a href="#pesquisa" class="btn-primary">
-                Saiba Mais
-            </a>
+            <div class="hero-buttons">
+
+                <a href="#sobre"
+                    class="btn-primary">
+
+                    Conheça o Projeto
+
+                </a>
+
+                <a href="#impacto"
+                    class="btn-secondary">
+
+                    Ver Impacto
+
+                </a>
+
+            </div>
 
         </div>
 
     </section>
 
-    <section class="about" id="sobre">
+    <section class="stats reveal">
+
+        <div class="container stats-grid">
+
+            <div class="stat-card">
+
+                <h3>+500</h3>
+
+                <p>
+                    Pesquisas Realizadas
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>+120</h3>
+
+                <p>
+                    Projetos Inovadores
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>+40</h3>
+
+                <p>
+                    Parceiros
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>100%</h3>
+
+                <p>
+                    Foco em Sustentabilidade
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="sobre"
+        class="about reveal">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span>Sobre o Projeto</span>
+
+                <h2>
+                    Conectando Educação, Tecnologia e Sustentabilidade
+                </h2>
+
+            </div>
+
+            <p>
+
+                O Projeto Agrinho promove conhecimento sobre o agronegócio,
+                incentivando práticas sustentáveis, inovação tecnológica
+                e conscientização ambiental.
+
+            </p>
+
+            <p>
+
+                Através da integração entre ciência, pesquisa e tecnologia,
+                o projeto busca preparar estudantes e comunidades para os
+                desafios da agricultura moderna.
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <section id="objetivos"
+        class="objectives reveal">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span>Objetivos</span>
+
+                <h2>
+                    O Que Buscamos Alcançar
+                </h2>
+
+            </div>
+
+            <div class="cards-grid">
+
+                <article class="card">
+
+                    <div class="card-icon">
+                        🚜
+                    </div>
+
+                    <h3>
+                        Agricultura Moderna
+                    </h3>
+
+                    <p>
+
+                        Incentivar tecnologias capazes de aumentar a
+                        eficiência produtiva.
+
+                    </p>
+
+                </article>
+
+                <article class="card">
+
+                    <div class="card-icon">
+                        🌱
+                    </div>
+
+                    <h3>
+                        Sustentabilidade
+                    </h3>
+
+                    <p>
+
+                        Promover práticas que preservem os recursos naturais.
+
+                    </p>
+
+                </article>
+
+                <article class="card">
+
+                    <div class="card-icon">
+                        🤖
+                    </div>
+
+                    <h3>
+                        Inovação
+                    </h3>
+
+                    <p>
+
+                        Demonstrar como IA, sensores e automação
+                        estão revolucionando o campo.
+
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="destaques"
+        class="highlights reveal">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span>Destaques</span>
+
+                <h2>
+                    Tecnologias em Evidência
+                </h2>
+
+            </div>
+
+            <div class="cards-grid">
+
+                <article class="card">
+
+                    <h3>
+                        Agricultura de Precisão
+                    </h3>
+
+                    <p>
+
+                        Monitoramento inteligente baseado em dados.
+
+                    </p>
+
+                </article>
+
+                <article class="card">
+
+                    <h3>
+                        Bioinsumos
+                    </h3>
+
+                    <p>
+
+                        Alternativas sustentáveis aos insumos convencionais.
+
+                    </p>
+
+                </article>
+
+                <article class="card">
+
+                    <h3>
+                        Drones Agrícolas
+                    </h3>
+
+                    <p>
+
+                        Inspeção aérea para tomada de decisões mais rápidas.
+
+                    </p>
+
+                </article>
+
+                <article class="card">
+
+                    <h3>
+                        Inteligência Artificial
+                    </h3>
+
+                    <p>
+
+                        Análise de dados para aumentar a produtividade.
+
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="impacto"
+        class="impact reveal">
+
+        <div class="container impact-grid">
+
+            <div>
+
+                <span class="section-label">
+                    Impacto
+                </span>
+
+                <h2>
+
+                    Construindo o Futuro da Agricultura Brasileira
+
+                </h2>
+
+                <p>
+
+                    A união entre tecnologia e sustentabilidade possibilita
+                    maior produtividade, redução de desperdícios e melhor
+                    aproveitamento dos recursos naturais.
+
+                </p>
+
+                <a href="#contato"
+                    class="btn-primary">
+
+                    Saiba Mais
+
+                </a>
+
+            </div>
+
+            <div class="impact-image">
+
+                🌾
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="cta reveal">
 
         <div class="container">
 
             <h2>
-                Conectando Ciência, Tecnologia e Produção
+
+                Juntos por uma Agricultura Mais Inteligente
+
             </h2>
 
             <p>
-                O agronegócio moderno utiliza dados, sensores, drones e pesquisas científicas para
-                produzir mais alimentos com eficiência e sustentabilidade. A integração entre
-                tecnologia e agricultura está moldando o futuro do campo.
+
+                Educação, inovação e sustentabilidade para transformar o futuro.
+
             </p>
 
-        </div>
+            <a href="#contato"
+                class="btn-primary">
 
-    </section>
+                Entrar em Contato
 
-    <section class="highlights" id="pesquisa">
-
-        <div class="container">
-
-            <div class="section-header">
-                <h2>Destaques</h2>
-                <p>Conheça algumas das principais tendências tecnológicas do agronegócio.</p>
-            </div>
-
-            <div class="cards">
-
-                <article class="card">
-
-                    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=80"
-                        alt="Agricultura de Precisão">
-
-                    <div class="card-content">
-
-                        <h3>Agricultura de Precisão</h3>
-
-                        <p>
-                            Sensores e análise de dados permitem monitorar lavouras em tempo real,
-                            reduzindo desperdícios e aumentando a produtividade.
-                        </p>
-
-                        <a href="#">Saiba mais →</a>
-
-                    </div>
-
-                </article>
-
-                <article class="card">
-
-                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80"
-                        alt="Drones">
-
-                    <div class="card-content">
-
-                        <h3>Monitoramento por Drones</h3>
-
-                        <p>
-                            Imagens aéreas ajudam a identificar pragas, falhas de plantio e
-                            necessidades específicas de cada área da propriedade.
-                        </p>
-
-                        <a href="#">Saiba mais →</a>
-
-                    </div>
-
-                </article>
-
-                <article class="card">
-
-                    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=80"
-                        alt="Bioinsumos">
-
-                    <div class="card-content">
-
-                        <h3>Bioinsumos</h3>
-
-                        <p>
-                            Soluções biológicas promovem crescimento saudável das plantas e
-                            reduzem a dependência de insumos químicos.
-                        </p>
-
-                        <a href="#">Saiba mais →</a>
-
-                    </div>
-
-                </article>
-
-                <article class="card">
-
-                    <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=80"
-                        alt="Sustentabilidade">
-
-                    <div class="card-content">
-
-                        <h3>Sustentabilidade</h3>
-
-                        <p>
-                            Produzir mais preservando o meio ambiente é um dos pilares da
-                            nova agricultura conectada.
-                        </p>
-
-                        <a href="#">Saiba mais →</a>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="innovation" id="inovacao">
-
-        <div class="container">
-
-            <div class="innovation-grid">
-
-                <div>
-                    <h2>Inovação para o Campo do Futuro</h2>
-
-                    <p>
-                        Inteligência artificial, internet das coisas (IoT), automação e análise
-                        de grandes volumes de dados estão revolucionando a tomada de decisões
-                        no agronegócio.
-                    </p>
-
-                    <p>
-                        Essas tecnologias contribuem para uma agricultura mais eficiente,
-                        sustentável e preparada para os desafios climáticos.
-                    </p>
-
-                </div>
-
-                <img src="https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?auto=format&fit=crop&w=1200&q=80"
-                    alt="Tecnologia no campo">
-
-            </div>
+            </a>
 
         </div>
 
@@ -227,30 +455,63 @@
 
     <footer id="contato">
 
-        <div class="container footer-content">
+        <div class="container footer-grid">
 
             <div>
-                <h3>AgroTech Brasil</h3>
-                <p>Inovação e conhecimento para transformar o agronegócio.</p>
+
+                <h3>
+                    Agrinho 2026
+                </h3>
+
+                <p>
+
+                    Tecnologia, inovação e sustentabilidade para o futuro do campo.
+
+                </p>
+
             </div>
 
             <div>
-                <h4>Links</h4>
+
+                <h4>
+                    Navegação
+                </h4>
+
                 <a href="#sobre">Sobre</a>
-                <a href="#pesquisa">Pesquisa</a>
-                <a href="#inovacao">Inovação</a>
+                <a href="#objetivos">Objetivos</a>
+                <a href="#impacto">Impacto</a>
+
+            </div>
+
+            <div>
+
+                <h4>
+                    Projeto
+                </h4>
+
+                <p>
+                    Desenvolvido para promover conhecimento e inovação no agronegócio.
+                </p>
+
             </div>
 
         </div>
 
         <div class="copyright">
-            © 2026 AgroTech Brasil. Todos os direitos reservados.
+
+            © 2026 Agrinho. Todos os direitos reservados.
+
         </div>
 
     </footer>
+
+    <button id="backToTop">
+        ↑
+    </button>
 
     <script src="script.js"></script>
 
 </body>
 
 </html>
+```
